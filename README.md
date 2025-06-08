@@ -30,9 +30,15 @@
 
 | 초기화면 |
 |----------|
-|![Main](https://github.com/user-attachments/assets/9e94585d-e386-4956-91cb-37b0c5cc7d4e)|
-
+|![main](https://github.com/user-attachments/assets/191b84bf-f087-46aa-a7e8-88a2fe888893)|
 <br>
+
+### [추천결과]
+- 서비스 접속 초기화면으로 콘텐츠를 추천받기 위해 입력 가능한 페이지가 출력됩니다.
+  
+| 추천결과 |
+|----------|
+|![result](https://github.com/user-attachments/assets/e4dc072e-0784-4639-b864-aa505e8e87e6)|
 
 ### [회원가입]
 - 이메일 주소를 입력하면 입력창에서 바로 유효성 검사가 진행되고 통과하지 못한 경우 경고 문구가 상단에 표시됩니다.
@@ -41,9 +47,7 @@
 
 | 회원가입 |
 |----------|
-|![sign_up](https://github.com/user-attachments/assets/148a6fad-478a-41d0-bd8e-831ae131bc9f)|
-
-
+|![sign_up](https://github.com/user-attachments/assets/57df304c-af09-4f22-8fc3-6672dc9735d9)|
 <br>
 
 ### [로그인]
@@ -52,8 +56,7 @@
 
 | 로그인 |
 |----------|
-|![sign_in](https://github.com/user-attachments/assets/bf69e0eb-0d95-4839-9d2f-b348551d5721)|
-
+|![sign_in](https://github.com/user-attachments/assets/35ef7b52-78c7-4178-a715-8f7dcf6aca71)|
 <br>
 
 ### [로그아웃]
@@ -63,7 +66,8 @@
 
 | 로그아웃 |
 |----------|
-|![logout](https://github.com/user-attachments/assets/d7bef906-f37f-4bae-b847-6b13d7ef984f)|
+|![logout](https://github.com/user-attachments/assets/e1a2f84e-8596-41f7-b20e-f447ae25aecd)|
+<br>
 
 ## 개선 목표
 

@@ -1,0 +1,31 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <section class="max-w-md mx-auto bg-white/80 backdrop-blur-md shadow-2xl rounded-3xl p-10 space-y-8">
+        <h2 class="text-3xl font-extrabold text-center text-[#5c6ac4]">로그인</h2>
+        <form method="post" th:action="@{/user/login}" class="space-y-6">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    사용자 ID 또는 비밀번호를 확인해 주세요.
+                </div>
+            </div>
+            <input name="email" type="email" placeholder="이메일 주소"
+                    class="w-full p-4 border border-gray-300 rounded-xl bg-white bg-opacity-90
+                       focus:ring-2 focus:ring-[#5c6ac4] focus:outline-none transition duration-200"
+                    required />
+            <input name="password" type="password" placeholder="비밀번호"
+                    class="w-full p-4 border border-gray-300 rounded-xl bg-white bg-opacity-90
+                       focus:ring-2 focus:ring-[#5c6ac4] focus:outline-none transition duration-200"
+                    required />
+            <button type="submit"
+                    class="w-full bg-[#5c6ac4] hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl
+                       transition duration-200">
+                로그인
+            </button>
+        </form>
+        <!-- 하단 링크 예시 (선택사항) -->
+        <div class="text-center text-sm text-gray-600">
+            계정이 없으신가요? <a href="/user/signup" class="text-[#5c6ac4] hover:underline">회원가입</a>
+        </div>
+    </section>
+</div>
+</html>

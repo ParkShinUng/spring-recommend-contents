@@ -1,0 +1,174 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <main>
+        <div class="content-area max-w-6xl mx-auto space-y-12 px-10 bg-white/70 rounded-3xl shadow-2xl backdrop-blur-md ring-1 ring-white/40">
+        <form id="emotionForm" onsubmit="submitRecommendation(event)">
+                <!-- Step 1 -->
+                <section id="step1" class="space-y-8 transition-all duration-500 ease-in-out opacity-100 translate-y-0">
+                    <div class="text-center">
+                        <h1 class="text-3xl font-extrabold text-[#5c6ac4]">어떤 콘텐츠 분야를 추천받고 싶으신가요?</h1>
+                        <p class="text-gray-700 text-lg mt-2">한 가지 분야를 선택해주세요</p>
+                    </div>
+                    <select id="category" name="category" required
+                            class="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-400 focus:outline-none transition text-lg bg-white shadow-sm">
+                        <option value="">콘텐츠 분야를 선택하세요</option>
+                        <option value="영화">영화</option>
+                        <option value="음악">음악</option>
+                        <option value="시리즈">시리즈(OTT 드라마, 예능 등)</option>
+                    </select>
+
+                    <div class="text-center mt-6">
+                        <h1 class="text-3xl font-extrabold text-[#5c6ac4]">오늘 당신의 감정은?</h1>
+                        <p class="text-gray-700 text-lg mt-2">아래에서 현재 감정에 가장 가까운 것을 선택해주세요</p>
+                    </div>
+                    <select id="emotion" name="emotion" required
+                            class="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-400 focus:outline-none transition text-lg bg-white shadow-sm">
+                        <option value="">감정을 선택하세요</option>
+                        <option value="기쁨">😊 기쁨</option>
+                        <option value="슬픔">😢 슬픔</option>
+                        <option value="외로움">😔 외로움</option>
+                        <option value="우울함">😞 우울함</option>
+                        <option value="신남">🤩 신남</option>
+                    </select>
+
+                    <button type="button"
+                            onclick="goToStep2()"
+                            class="w-full mt-8 bg-[#5c6ac4] hover:bg-indigo-700 text-white font-semibold py-4 rounded-xl shadow-lg transition duration-300">
+                        다음
+                    </button>
+                </section>
+
+                <!-- Step 2 -->
+                <section id="step2"
+                         class="space-y-8 transition-all duration-500 ease-in-out opacity-0 -translate-y-5 hidden">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-extrabold text-[#5c6ac4]">왜 이런 감정이 드셨나요?</h2>
+                        <p class="text-gray-700 text-lg mt-2">간단한 상황을 공유해주세요</p>
+                    </div>
+                    <textarea id="reason" name="reason" rows="6" required
+                              class="w-full p-5 border border-gray-300 rounded-xl focus:ring-4 focus:ring-indigo-400 focus:outline-none transition text-lg bg-white shadow-sm"
+                              placeholder="예: 친구와의 약속이 취소돼서 외롭고 허무한 기분이에요."></textarea>
+                    <button type="submit"
+                            class="w-full mt-6 bg-blue-500 hover:bg-indigo-700 text-white font-semibold py-4 rounded-xl shadow-lg transition duration-300">
+                        AI 컨텐츠 추천 받기
+                    </button>
+                </section>
+            </form>
+
+            <!-- Step 3: 로딩 화면 -->
+            <section id="loading" class="text-center hidden">
+                <div class="flex flex-col items-center justify-center space-y-4 py-10">
+                    <div class="relative">
+                        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                        <span class="absolute top-full mt-2 text-indigo-500 font-medium animate-pulse">
+                            AI가 콘텐츠를 추천하고 있어요...
+                          </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: 결과 출력 -->
+            <section id="result" class="hidden space-y-8 py-12 px-4 bg-white/80 rounded-3xl shadow-lg backdrop-blur-sm">
+                <div class="text-center">
+                    <h3 class="text-3xl font-extrabold text-[#5c6ac4]">🎉 당신의 감정에 어울리는 콘텐츠 추천</h3>
+                    <p class="text-gray-600 mt-3 text-lg">감정을 토대로 엄선한 콘텐츠입니다. 마음에 드는 걸 골라보세요!</p>
+                </div>
+
+                <ul id="recommendationList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mt-8">
+                <!-- JS에서 여기에 카드가 삽입됨 -->
+                </ul>
+
+                <div class="text-center">
+                    <button onclick="location.reload()"
+                            class="w-full mt-6 bg-blue-500 hover:bg-indigo-700 text-white font-semibold py-4 rounded-xl shadow-lg transition duration-300">
+                        <span>다시 추천받기</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<script layout:fragment="script">
+    function goToStep2() {
+      const emotion = document.getElementById('emotion').value;
+      if (!emotion) {
+        alert('감정을 선택해주세요.');
+        return;
+      }
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+
+      step1.classList.add('hidden');
+
+      step2.classList.remove('hidden');
+      step2.classList.remove('opacity-0', '-translate-y-5');
+    }
+
+
+    function submitRecommendation(event) {
+        event.preventDefault();
+
+        const category = document.getElementById('category').value;
+        const emotion = document.getElementById('emotion').value;
+        const reason = document.getElementById('reason').value.trim();
+
+        if (!category || !emotion || !reason) {
+          alert('콘텐츠 분야, 감정, 이유를 모두 입력해주세요.');
+          return;
+        }
+
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('loading').classList.remove('hidden');
+
+        fetch('/api/recommend-list', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ category, emotion, reason })
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('추천 요청에 실패했습니다.');
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById('loading').classList.add('hidden');
+          document.getElementById('result').classList.remove('hidden');
+
+          const list = document.getElementById('recommendationList');
+          list.innerHTML = '';
+
+          data.contents.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.className = `
+              bg-white/80 rounded-2xl shadow-xl p-6 flex flex-col justify-between
+              transition hover:shadow-2xl hover:scale-105 duration-300 ring-1 ring-indigo-100
+            `;
+            li.innerHTML = `
+              <div class="flex flex-col items-center bg-white/95 rounded-2xl shadow-md p-4 space-y-3 hover:shadow-xl hover:scale-[1.03] transition duration-300 ease-in-out">
+
+                <!-- 썸네일 이미지 -->
+                <div class="w-48 h-48 rounded-xl overflow-hidden shadow-sm border border-gray-200">
+                  <img src="${item.img}" alt="${item.name}"
+                       class="w-full h-full object-cover" />
+                </div>
+
+                <!-- 콘텐츠 정보 -->
+                <div class="text-center space-y-1">
+                  <h4 class="text-lg font-bold text-[#5c6ac4]">${item.name}</h4>
+                  ${item.genre ? `<p class="text-sm text-indigo-500 font-medium">🎬 ${item.genre}</p>` : ''}
+                  ${item.description ? `<p class="text-sm text-gray-700 leading-relaxed line-clamp-2">${item.description}</p>` : ''}
+                </div>
+              </div>
+            `;
+            list.appendChild(li);
+          });
+        })
+        .catch(error => {
+          console.error(error);
+          alert('AI 추천 처리 중 오류가 발생했습니다.');
+          document.getElementById('loading').classList.add('hidden');
+          document.getElementById('step2').classList.remove('hidden');
+        });
+    }
+</script>
+</html>

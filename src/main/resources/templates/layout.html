@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no"/>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <link href="/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600;700&display=swap" rel="stylesheet">
+    <th:block layout:fragment="style"></th:block>
+    <style>
+        body {
+      margin: 0;
+      font-family: 'SUIT', sans-serif;
+      background: linear-gradient(to bottom, #f7faff, #edf1ff);
+      color: #333;
+    }
+
+    header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #5c6ac4;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #f0f0f0;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+    }
+
+    .page-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #444;
+    }
+
+    .content-area {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    /* ✅ 반응형 스타일 적용 */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.1rem;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .content-area {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+        padding: 8px;
+      }
+
+      .content-area {
+        padding: 15px;
+      }
+
+      main {
+        padding: 40px 16px 60px;
+      }
+
+      .page-title {
+        font-size: 1.3rem;
+      }
+    }
+    </style>
+    <title>Feelight</title>
+</head>
+<body class="min-h-screen bg-gradient-to-bl from-rose-100 via-indigo-100 to-blue-100">
+    <!-- 네비게이션 바 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    <th:block layout:fragment="content" class="mt-24"></th:block>
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
+    <!-- Javascript Start -->
+    <th:block layout:fragment="script"></th:block>
+    <!-- Footer -->
+    <footer class="mt-24 text-center text-gray-600 py-8 border-t border-gray-300">
+    &copy; 2025 Feelight. All rights reserved.
+    </footer>
+</body>
+</html>

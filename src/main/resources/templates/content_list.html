@@ -1,0 +1,130 @@
+<html layout:decorate="~{layout}">
+<style layout:fragment="style">
+    body {
+      margin: 0;
+      font-family: 'SUIT', sans-serif;
+      background: linear-gradient(to bottom, #f0f4ff, #fcecf2);
+      color: #333;
+    }
+
+    .container {
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #444;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      text-align: center;
+      color: #777;
+      margin-bottom: 40px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 18px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .card-type {
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .retry-btn {
+      display: block;
+      margin: 50px auto 0;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .retry-btn:hover {
+      background: #574bdf;
+    }
+</style>
+<div layout:fragment="content" class="container">
+    <h1 class="title">“기분이 외로운 당신에게”</h1>
+    <p class="subtitle">이런 콘텐츠는 어때요? 당신의 감정을 위로할 추천 콘텐츠를 모아봤어요.</p>
+
+    <div class="card-grid">
+        <div class="card">
+            <img src="https://source.unsplash.com/featured/?movie" alt="콘텐츠 썸네일">
+            <div class="card-content">
+                <div class="card-title">Her (그녀)</div>
+                <div class="card-desc">AI와 사랑에 빠진 남자의 따뜻하고도 외로운 이야기.</div>
+                <div class="card-type">🎬 영화</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://source.unsplash.com/featured/?music" alt="콘텐츠 썸네일">
+            <div class="card-content">
+                <div class="card-title">IU - 밤편지</div>
+                <div class="card-desc">고요한 밤, 외로운 마음에 조용히 스며드는 노래.</div>
+                <div class="card-type">🎵 음악</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://source.unsplash.com/featured/?drama" alt="콘텐츠 썸네일">
+            <div class="card-content">
+                <div class="card-title">나의 해방일지</div>
+                <div class="card-desc">고단한 삶 속에서도 위로가 되는 이야기.</div>
+                <div class="card-type">📺 드라마</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="retry-btn" onclick="window.location.reload();">다시 추천받기</button>
+</div>
+</html>
